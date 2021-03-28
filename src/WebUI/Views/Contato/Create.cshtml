@@ -1,1 +1,11 @@
-Funcionou
+@model WebUI.Models.Contato
+
+<form asp-action="Create">
+
+    <input asp-for="Nome"/>
+    <input asp-for="SobreNome"/>
+    <input asp-for="Email"/>
+
+    <input type="submit"/>
+
+</form>
