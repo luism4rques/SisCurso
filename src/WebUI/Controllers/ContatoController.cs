@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using WebUI.Models;
 using DAL;
-//using DTO;
 
 namespace WebUI.Controllers
 {
@@ -15,10 +13,6 @@ namespace WebUI.Controllers
         {
             lstContato.Add(new Contato() { Id=1, Nome="Maria", SobreNome="Silva", Email="maria@silva.com" });
             lstContato.Add(new Contato() { Id=2, Nome="José", SobreNome="Silva", Email="jose@silva.com" });
-            
-            var dal = new ContatoDAL();
-            dal.Incluir(new DTO.Contato() { Id=1, Nome="Maria", SobreNome="Silva", Email="maria@silva.com" });
-            var y = dal.Obter(1);
         }
 
         public IActionResult Create()
@@ -40,6 +34,7 @@ namespace WebUI.Controllers
         public IActionResult Details(int id)
         {
             var contato = lstContato.Find(contato => contato.Id == id);
+
             return View(contato);
         }
     }
