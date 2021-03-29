@@ -1,5 +1,7 @@
 @model IEnumerable<WebUI.Models.Contato>
 
+<a asp-controller="Contato" asp-action="Create">Adicionar</a>
+
 <table class="table">
     <thead>
         <tr>
@@ -11,6 +13,8 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
             </th>
         </tr>
     </thead>
@@ -25,6 +29,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a asp-controller="Contato" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
             </td>
         </tr>
     }

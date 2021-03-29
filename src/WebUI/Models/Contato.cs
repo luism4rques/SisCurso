@@ -1,9 +1,12 @@
+using System;
 using System.ComponentModel;
 
 namespace WebUI.Models
 {
     public class Contato
     {
+        public Guid Id { get; set; }
+
         [DisplayName("Nome")]
         public string Nome { get; set; }
 
