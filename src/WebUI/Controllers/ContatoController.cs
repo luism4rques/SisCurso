@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using WebUI.Models;
-using DAL;
 
 namespace WebUI.Controllers
 {
