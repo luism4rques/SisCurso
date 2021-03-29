@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using WebUI.Models;
@@ -11,8 +10,8 @@ namespace WebUI.Controllers
 
         public ContatoController()
         {
-            lstContato.Add(new Contato() { Id=new Guid("9f10503c-16e4-4f8b-bfaf-4976de1cb418"), Nome="Maria", SobreNome="Silva", Email="maria@silva.com" });
-            lstContato.Add(new Contato() { Id=new Guid("8e07cb28-6c6b-48b8-ace3-fe5c8966a4c3"), Nome="José", SobreNome="Silva", Email="jose@silva.com" });
+            lstContato.Add(new Contato() { Id=1, Nome="Maria", SobreNome="Silva", Email="maria@silva.com" });
+            lstContato.Add(new Contato() { Id=2, Nome="José", SobreNome="Silva", Email="jose@silva.com" });
         }
 
         public IActionResult Create()
@@ -31,9 +30,10 @@ namespace WebUI.Controllers
             return View(lstContato);
         }
 
-        public IActionResult Details(Guid id)
+        public IActionResult Details(int id)
         {
             var contato = lstContato.Find(contato => contato.Id == id);
+
             return View(contato);
         }
     }
