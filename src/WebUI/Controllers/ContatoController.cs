@@ -37,6 +37,23 @@ namespace WebUI.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public IActionResult Update(Contato contato)
+        {
+            var contatoDTO = new ContatoDTO 
+            { 
+                Id = contato.Id,
+                Nome = contato.Nome, 
+                SobreNome = contato.SobreNome,
+                Email = contato.Email
+            };
+            
+            var contatoDAO = new ContatoDAO();
+            contatoDAO.Atualizar(contatoDTO);
+
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Index()
         {
             var contatoDAO = new ContatoDAO();
@@ -56,6 +73,14 @@ namespace WebUI.Controllers
             }
 
             return View(lstContato);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var contatoDAO = new ContatoDAO();
+            contatoDAO.Excluir(id);
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult Details(int id)

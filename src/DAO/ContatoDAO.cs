@@ -42,10 +42,33 @@ namespace DAL
             using (var con = Connection)
             {
                 con.Open();
-                contato.Id = con.Execute(
+                con.Execute(
                     @"INSERT INTO Contato
                     (  Nome, SobreNome, Email ) VALUES
                     (  @Nome, @SobreNome, @Email );", contato);
+            }
+        }
+
+        public void Atualizar(ContatoDTO contato)
+        {        
+            using (var con = Connection)
+            {
+                con.Open();
+                con.Execute(
+                    @"UPDATE Contato SET 
+                    Nome = @Nome, SobreNome = @SobreNome, Email = @Email
+                    WHERE Id = @Id;", contato);
+            }
+        }
+
+        public void Excluir(int id)
+        {
+            using (var con = Connection)
+            {
+                con.Open();
+                con.Execute(
+                    @"DELETE FROM Contato  
+                    WHERE Id = @Id;", new { id });
             }
         }
 
