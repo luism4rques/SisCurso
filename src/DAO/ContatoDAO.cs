@@ -36,25 +36,24 @@ namespace DAL
             }
         }
 
-        public void Criar(Contato contato)
+        public void Criar(ContatoDTO contato)
         {        
             using (var con = Connection)
             {
                 con.Open();
-                contato.Id = con.Query<int>(
+                contato.Id = con.Execute(
                     @"INSERT INTO Contato
                     (  Nome, SobreNome, Email ) VALUES
-                    (  @Nome, @SobreNome, @Email );
-                    select last_insert_rowid()", contato).First();
+                    (  @Nome, @SobreNome, @Email );", contato);
             }
         }
 
-        public Contato Consultar(int id)
+        public ContatoDTO Consultar(int id)
         {
             using (var con = Connection)
             {
                 con.Open();
-                Contato result = con.Query<Contato>(
+                ContatoDTO result = con.Query<ContatoDTO>(
                     @"SELECT Id, Nome, SobreNome, Email
                     FROM Contato
                     WHERE Id = @id", new { id }).FirstOrDefault();

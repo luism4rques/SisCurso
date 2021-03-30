@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using DAL;
+using DTO;
 using Microsoft.AspNetCore.Mvc;
 using WebUI.Models;
 
@@ -22,6 +24,16 @@ namespace WebUI.Controllers
         [HttpPost]
         public IActionResult Create(Contato contato)
         {
+            var dto = new ContatoDTO 
+            { 
+                Nome = contato.Nome, 
+                SobreNome = contato.SobreNome,
+                Email = contato.Email
+            };
+            
+            var dao = new ContatoDAO();
+            dao.Criar(dto);
+
             return View();
         }
 
