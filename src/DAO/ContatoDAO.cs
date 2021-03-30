@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
@@ -45,6 +46,19 @@ namespace DAL
                     @"INSERT INTO Contato
                     (  Nome, SobreNome, Email ) VALUES
                     (  @Nome, @SobreNome, @Email );", contato);
+            }
+        }
+
+        public List<ContatoDTO> Consultar()
+        {
+            using(var con = Connection)
+            {
+                con.Open();
+                var result = con.Query<ContatoDTO>(
+                    @"SELECT Id, Nome, SobreNome, Email
+                    FROM Contato"
+                ).ToList();
+                return result;
             }
         }
 
