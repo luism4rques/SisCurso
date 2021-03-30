@@ -7,12 +7,12 @@ using DTO;
 
 namespace DAL
 {
-    public class ContatoDAL
+    public class ContatoDAO
     {
         private string DataSourceFile => Environment.CurrentDirectory + "\\SisCursoDB.sqlite";
         public SQLiteConnection Connection => new SQLiteConnection("Data Source=" + DataSourceFile);
 
-        public ContatoDAL()
+        public ContatoDAO()
         {
             if (!File.Exists(DataSourceFile))
             {
@@ -36,7 +36,7 @@ namespace DAL
             }
         }
 
-        public void Incluir(Contato contato)
+        public void Criar(Contato contato)
         {        
             using (var con = Connection)
             {
@@ -49,7 +49,7 @@ namespace DAL
             }
         }
 
-        public Contato Obter(int id)
+        public Contato Consultar(int id)
         {
             using (var con = Connection)
             {
