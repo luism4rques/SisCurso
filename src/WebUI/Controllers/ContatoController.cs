@@ -9,12 +9,10 @@ namespace WebUI.Controllers
     public class ContatoController : Controller
     {
         private readonly IContatoDAO _contatoDAO;
-        private readonly IMapper _mapper;
 
-        public ContatoController(IContatoDAO contatoDAO, IMapper mapper)
+        public ContatoController(IContatoDAO contatoDAO)
         {
             _contatoDAO = contatoDAO;
-            _mapper = mapper;
         }
 
         public IActionResult Create()
