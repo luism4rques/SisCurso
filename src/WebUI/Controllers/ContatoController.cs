@@ -8,11 +8,11 @@ namespace WebUI.Controllers
 {
     public class ContatoController : Controller
     {
-        private ContatoDAO _contatoDAO;
+        private readonly ContatoDAO _contatoDAO;
 
-        public ContatoController()
+        public ContatoController(ContatoDAO contatoDAO)
         {
-            _contatoDAO = new ContatoDAO();
+            _contatoDAO = contatoDAO;
         }
 
         public IActionResult Create()
