@@ -23,6 +23,10 @@ namespace WebUI.Controllers
         [HttpPost]
         public IActionResult Create(ContatoViewModel contatoViewModel)
         {
+            if(!ModelState.IsValid) {
+                return View();
+            }
+
             var contatoDTO = new ContatoDTO 
             { 
                 Nome = contatoViewModel.Nome, 
