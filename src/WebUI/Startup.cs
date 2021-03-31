@@ -26,7 +26,7 @@ namespace WebUI
         {
             services.AddControllersWithViews();
             
-            services.AddTransient<ContatoDAO>();
+            services.AddTransient<IContatoDAO, ContatoDAO>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -8,9 +8,9 @@ namespace WebUI.Controllers
 {
     public class ContatoController : Controller
     {
-        private readonly ContatoDAO _contatoDAO;
+        private readonly IContatoDAO _contatoDAO;
 
-        public ContatoController(ContatoDAO contatoDAO)
+        public ContatoController(IContatoDAO contatoDAO)
         {
             _contatoDAO = contatoDAO;
         }
