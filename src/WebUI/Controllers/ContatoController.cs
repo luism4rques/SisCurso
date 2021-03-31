@@ -21,13 +21,13 @@ namespace WebUI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Contato contato)
+        public IActionResult Create(ContatoViewModel contatoViewModel)
         {
             var contatoDTO = new ContatoDTO 
             { 
-                Nome = contato.Nome, 
-                SobreNome = contato.SobreNome,
-                Email = contato.Email
+                Nome = contatoViewModel.Nome, 
+                SobreNome = contatoViewModel.SobreNome,
+                Email = contatoViewModel.Email
             };
             
             _contatoDAO.Criar(contatoDTO);
@@ -36,14 +36,14 @@ namespace WebUI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(Contato contato)
+        public IActionResult Update(ContatoViewModel contatoViewModel)
         {
             var contatoDTO = new ContatoDTO 
             { 
-                Id = contato.Id,
-                Nome = contato.Nome, 
-                SobreNome = contato.SobreNome,
-                Email = contato.Email
+                Id = contatoViewModel.Id,
+                Nome = contatoViewModel.Nome, 
+                SobreNome = contatoViewModel.SobreNome,
+                Email = contatoViewModel.Email
             };
             
             _contatoDAO.Atualizar(contatoDTO);
@@ -54,11 +54,11 @@ namespace WebUI.Controllers
         public IActionResult Index()
         {
             var lstContatoDTO = _contatoDAO.Consultar();
-            var lstContato = new List<Contato>();
+            var lstContatoViewModel = new List<ContatoViewModel>();
 
             foreach(var dto in lstContatoDTO)
             {
-                lstContato.Add(new Contato()
+                lstContatoViewModel.Add(new ContatoViewModel()
                 { 
                     Id = dto.Id, 
                     Nome = dto.Nome, 
@@ -67,7 +67,7 @@ namespace WebUI.Controllers
                 });
             }
 
-            return View(lstContato);
+            return View(lstContatoViewModel);
         }
 
         public IActionResult Delete(int id)
@@ -81,7 +81,7 @@ namespace WebUI.Controllers
         {
             var contatoDTO = _contatoDAO.Consultar(id);
 
-            var contato = new Contato()
+            var contatoViewModel = new ContatoViewModel()
             { 
                 Id = contatoDTO.Id, 
                 Nome = contatoDTO.Nome, 
@@ -89,7 +89,7 @@ namespace WebUI.Controllers
                 Email = contatoDTO.Email 
             };
 
-            return View(contato);
+            return View(contatoViewModel);
         }
     }
 }
