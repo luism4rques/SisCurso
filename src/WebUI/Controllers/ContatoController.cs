@@ -42,6 +42,10 @@ namespace WebUI.Controllers
         [HttpPost]
         public IActionResult Update(ContatoViewModel contatoViewModel)
         {
+            if(!ModelState.IsValid) {
+                return View();
+            }
+
             var contatoDTO = new ContatoDTO 
             { 
                 Id = contatoViewModel.Id,
