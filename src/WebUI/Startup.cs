@@ -1,14 +1,17 @@
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DAL;
+using DTO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebUI.Models;
 
 namespace WebUI
 {
@@ -26,6 +29,13 @@ namespace WebUI
         {
             services.AddControllersWithViews();
             
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<ContatoViewModel, ContatoDTO>().ReverseMap();
+            });
+            IMapper mapper = config.CreateMapper();
+            
+            services.AddSingleton(mapper);
             services.AddTransient<IContatoDAO, ContatoDAO>();
         }
 
