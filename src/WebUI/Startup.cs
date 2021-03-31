@@ -1,3 +1,4 @@
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,13 @@ namespace WebUI
         {
             services.AddControllersWithViews();
             
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<ContatoViewModel, ContatoDTO>().ReverseMap();
+            });
+            IMapper mapper = config.CreateMapper();
+            
+            services.AddSingleton(mapper);
             services.AddTransient<IContatoDAO, ContatoDAO>();
         }
 
