@@ -8,12 +8,11 @@ namespace WebUI.Controllers
 {
     public class ContatoController : Controller
     {
-        private List<Contato> lstContato = new List<Contato>();
+        private ContatoDAO _contatoDAO;
 
         public ContatoController()
         {
-            lstContato.Add(new Contato() { Id=1, Nome="Maria", SobreNome="Silva", Email="maria@silva.com" });
-            lstContato.Add(new Contato() { Id=2, Nome="José", SobreNome="Silva", Email="jose@silva.com" });
+            _contatoDAO = new ContatoDAO();
         }
 
         public IActionResult Create()
@@ -31,8 +30,7 @@ namespace WebUI.Controllers
                 Email = contato.Email
             };
             
-            var contatoDAO = new ContatoDAO();
-            contatoDAO.Criar(contatoDTO);
+            _contatoDAO.Criar(contatoDTO);
 
             return RedirectToAction("Index");
         }
@@ -48,17 +46,14 @@ namespace WebUI.Controllers
                 Email = contato.Email
             };
             
-            var contatoDAO = new ContatoDAO();
-            contatoDAO.Atualizar(contatoDTO);
+            _contatoDAO.Atualizar(contatoDTO);
 
             return RedirectToAction("Index");
         }
 
         public IActionResult Index()
         {
-            var contatoDAO = new ContatoDAO();
-            var lstContatoDTO = contatoDAO.Consultar();
-
+            var lstContatoDTO = _contatoDAO.Consultar();
             var lstContato = new List<Contato>();
 
             foreach(var dto in lstContatoDTO)
@@ -77,16 +72,14 @@ namespace WebUI.Controllers
 
         public IActionResult Delete(int id)
         {
-            var contatoDAO = new ContatoDAO();
-            contatoDAO.Excluir(id);
+            _contatoDAO.Excluir(id);
 
             return RedirectToAction("Index");
         }
 
         public IActionResult Details(int id)
         {
-            var contatoDAO = new ContatoDAO();
-            var contatoDTO = contatoDAO.Consultar(id);
+            var contatoDTO = _contatoDAO.Consultar(id);
 
             var contato = new Contato()
             { 
