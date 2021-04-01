@@ -1,9 +1,10 @@
 @model WebUI.Models.ContatoViewModel
 
-<form asp-action="Update">
+<form>
     <input asp-for="Id" hidden>
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
+<<<<<<< HEAD
         <label asp-for="Nome" class="control-label">@Html.DisplayNameFor(model => model.Nome)</label>
         <input asp-for="Nome" class="form-control"/>
         <span asp-validation-for="Nome" class="text-danger"></span>
@@ -17,7 +18,19 @@
         <label asp-for="Email" class="control-label">@Html.DisplayNameFor(model => model.Email)</label>
         <input asp-for="Email" class="form-control"/>
         <span asp-validation-for="Email" class="text-danger"></span>
+=======
+        <label asp-for="Nome">@Html.DisplayNameFor(model => model.Nome)</label>
+        <input asp-for="Nome" class="form-control" disabled/>
     </div>
-    <input type="submit" class="btn btn-primary"/>
+    <div class="form-group">
+        <label asp-for="SobreNome">@Html.DisplayNameFor(model => model.SobreNome)</label>
+        <input asp-for="SobreNome" class="form-control" disabled/>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email">@Html.DisplayNameFor(model => model.Email)</label>
+        <input asp-for="Email" class="form-control" disabled/>
+>>>>>>> Aula13
+    </div>
 </form>
-<a asp-controller="Contato" asp-action="Delete" asp-route-id="@Model.Id">Excluir</a>
+
+<a asp-controller="Contato" asp-action="Index" asp-route-id="@Model.Id">Voltar</a>
