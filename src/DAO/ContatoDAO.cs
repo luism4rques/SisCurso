@@ -5,7 +5,7 @@ using System.Linq;
 using Dapper;
 using DTO;
 
-namespace DAL
+namespace DAO
 {
     public class ContatoDAO
     {
