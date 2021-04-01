@@ -35,6 +35,22 @@ namespace WebUI.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Update(int id)
+        {
+            var contatoDAO = new ContatoDAO();
+            var contatoDTO = contatoDAO.Consultar(id);
+
+            var contato = new Contato()
+            { 
+                Id = contatoDTO.Id, 
+                Nome = contatoDTO.Nome, 
+                SobreNome = contatoDTO.SobreNome, 
+                Email = contatoDTO.Email 
+            };
+
+            return View(contato);
+        }
+
         [HttpPost]
         public IActionResult Update(ContatoViewModel contatoViewModel)
         {
