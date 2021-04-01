@@ -7,7 +7,7 @@ namespace WebUI.Models
         [DisplayName("Nome")]
         public string Nome { get; set; }
 
-        [DisplayName("Sobre nome")]
+        [DisplayName("Sobrenome")]
         public string SobreNome { get; set; }
 
         [DisplayName("E-mail")]
