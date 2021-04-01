@@ -13,10 +13,10 @@ namespace WebUI.Models
         [DisplayName("Nome")]
         public string Nome { get; set; }
 
-        [Required(ErrorMessage = "O 'Sobre nome' deve ser preenchido.")]
-        [MinLength(2, ErrorMessage = "O 'Sobre nome' deve ter no mínimo 2 caracteres.")]
-        [MaxLength(100, ErrorMessage = "O 'Sobre nome' deve ter no máximo 100 caracteres.")]
-        [DisplayName("Sobre nome")]
+        [Required(ErrorMessage = "O 'Sobrenome' deve ser preenchido.")]
+        [MinLength(2, ErrorMessage = "O 'Sobrenome' deve ter no mínimo 2 caracteres.")]
+        [MaxLength(100, ErrorMessage = "O 'Sobrenome' deve ter no máximo 100 caracteres.")]
+        [DisplayName("Sobrenome")]
         public string SobreNome { get; set; }
 
         [Required(ErrorMessage = "O 'E-mail' deve ser preenchido.")]
