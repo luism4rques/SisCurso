@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Dapper;
 using DTO;
@@ -15,7 +12,7 @@ namespace DAO
 
         }
 
-        public void Criar(ContatoDTO contato)
+        public void Criar(ContatoDTO contatoDTO)
         {
             using (var con = Connection)
             {
@@ -23,11 +20,11 @@ namespace DAO
                 con.Execute(
                     @"INSERT INTO Contato
                     (  Nome, SobreNome, Email ) VALUES
-                    (  @Nome, @SobreNome, @Email );", contato);
+                    (  @Nome, @SobreNome, @Email );", contatoDTO);
             }
         }
 
-        public void Atualizar(ContatoDTO contato)
+        public void Atualizar(ContatoDTO contatoDTO)
         {
             using (var con = Connection)
             {
@@ -35,7 +32,7 @@ namespace DAO
                 con.Execute(
                     @"UPDATE Contato SET 
                     Nome = @Nome, SobreNome = @SobreNome, Email = @Email
-                    WHERE Id = @Id;", contato);
+                    WHERE Id = @Id;", contatoDTO);
             }
         }
 
