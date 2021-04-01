@@ -44,7 +44,7 @@ namespace WebUI.Controllers
             var contatoDAO = new ContatoDAO();
             var contatoDTO = contatoDAO.Consultar(id);
 
-            var contato = new Contato()
+            var contatoViewModel = new ContatoViewModel()
             { 
                 Id = contatoDTO.Id, 
                 Nome = contatoDTO.Nome, 
@@ -52,7 +52,7 @@ namespace WebUI.Controllers
                 Email = contatoDTO.Email 
             };
 
-            return View(contato);
+            return View(contatoViewModel);
         }
 
         [HttpPost]
