@@ -31,30 +31,17 @@ namespace WebUI.Controllers
             }
 
             var contatoDTO = _mapper.Map<ContatoDTO>(contatoViewModel);
-            // var contatoDTO = new ContatoDTO 
-            // { 
-            //     Nome = contatoViewModel.Nome, 
-            //     SobreNome = contatoViewModel.SobreNome,
-            //     Email = contatoViewModel.Email
-            // };
             
             _contatoDAO.Criar(contatoDTO);
 
             return RedirectToAction("Index");
         }
-
+        
         public IActionResult Update(int id)
         {
-            var contatoDAO = new ContatoDAO();
-            var contatoDTO = contatoDAO.Consultar(id);
+            var contatoDTO = _contatoDAO.Consultar(id);
 
-            var contatoViewModel = new ContatoViewModel()
-            { 
-                Id = contatoDTO.Id, 
-                Nome = contatoDTO.Nome, 
-                SobreNome = contatoDTO.SobreNome, 
-                Email = contatoDTO.Email 
-            };
+            var contatoViewModel = _mapper.Map<ContatoViewModel>(contatoDTO);
 
             return View(contatoViewModel);
         }
@@ -67,14 +54,6 @@ namespace WebUI.Controllers
             }
 
             var contatoDTO = _mapper.Map<ContatoDTO>(contatoViewModel);
-
-            // var contatoDTO = new ContatoDTO 
-            // { 
-            //     Id = contatoViewModel.Id,
-            //     Nome = contatoViewModel.Nome, 
-            //     SobreNome = contatoViewModel.SobreNome,
-            //     Email = contatoViewModel.Email
-            // };
             
             _contatoDAO.Atualizar(contatoDTO);
 
@@ -89,14 +68,6 @@ namespace WebUI.Controllers
             foreach(var dto in lstContatoDTO)
             {
                 lstContatoViewModel.Add(_mapper.Map<ContatoViewModel>(dto));
-
-                // lstContatoViewModel.Add(new ContatoViewModel()
-                // { 
-                //     Id = dto.Id, 
-                //     Nome = dto.Nome, 
-                //     SobreNome = dto.SobreNome, 
-                //     Email = dto.Email 
-                // });
             }
 
             return View(lstContatoViewModel);
@@ -114,13 +85,6 @@ namespace WebUI.Controllers
             var contatoDTO = _contatoDAO.Consultar(id);
 
             var contatoViewModel = _mapper.Map<ContatoViewModel>(contatoDTO);
-            // var contatoViewModel = new ContatoViewModel()
-            // { 
-            //     Id = contatoDTO.Id, 
-            //     Nome = contatoDTO.Nome, 
-            //     SobreNome = contatoDTO.SobreNome, 
-            //     Email = contatoDTO.Email 
-            // };
 
             return View(contatoViewModel);
         }
