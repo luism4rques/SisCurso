@@ -3,10 +3,14 @@ namespace WebUI.Models
     public class ContatoViewModel
     {
         public int Id { get; set; }
+        
+        [DisplayName("Nome")]
         public string Nome { get; set; }
 
         [DisplayName("Sobrenome")]
         public string SobreNome { get; set; }
+
+        [DisplayName("E-mail")]
         public string Email { get; set; }
     }
 }
