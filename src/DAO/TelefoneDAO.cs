@@ -5,7 +5,7 @@ using DTO;
 
 namespace DAO
 {
-    public class TelefoneDAO : BaseDAO
+    public class TelefoneDAO : BaseDAO, ITelefoneDAO
     {
         public TelefoneDAO() : base()
         {

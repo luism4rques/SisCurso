@@ -37,6 +37,7 @@ namespace WebUI
             
             services.AddSingleton(mapper);
             services.AddTransient<IContatoDAO, ContatoDAO>();
+            services.AddTransient<ITelefoneDAO, TelefoneDAO>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
