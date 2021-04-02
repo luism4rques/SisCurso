@@ -32,6 +32,7 @@ namespace WebUI
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<ContatoViewModel, ContatoDTO>().ReverseMap();
+                cfg.CreateMap<TelefoneViewModel, TelefoneDTO>().ReverseMap();
             });
             IMapper mapper = config.CreateMapper();
             
