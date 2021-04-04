@@ -11,11 +11,13 @@ namespace WebUI.Controllers
     {
         private readonly IContatoDAO _contatoDAO;
         private readonly IMapper _mapper;
+        private readonly ITelefoneDAO _telefoneDAO;
 
-        public ContatoController(IContatoDAO contatoDAO, IMapper mapper)
+        public ContatoController(IContatoDAO contatoDAO, IMapper mapper, ITelefoneDAO telefoneDAO)
         {
             _contatoDAO = contatoDAO;
             _mapper = mapper;
+            _telefoneDAO = telefoneDAO;
         }
 
         public IActionResult Create()
@@ -85,6 +87,13 @@ namespace WebUI.Controllers
             var contatoDTO = _contatoDAO.Consultar(id);
 
             var contatoViewModel = _mapper.Map<ContatoViewModel>(contatoDTO);
+
+            var lstTelefoneDTO = _telefoneDAO.ConsultarPorContato(id);
+
+            foreach(var telefoneDTO in lstTelefoneDTO)
+            {
+                contatoViewModel.LstTelefoneViewModel.Add(_mapper.Map<TelefoneViewModel>(telefoneDTO));
+            }
 
             return View(contatoViewModel);
         }

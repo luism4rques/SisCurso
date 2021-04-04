@@ -18,3 +18,26 @@
 
 <a asp-controller="Telefone" asp-action="Create" asp-route-id="@Model.Id">Adicionar Telefone</a>
 <a asp-controller="Contato" asp-action="Index" asp-route-id="@Model.Id">Voltar</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LstTelefoneViewModel[0].Numero)
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.LstTelefoneViewModel) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
