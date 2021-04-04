@@ -30,7 +30,7 @@ namespace DAO
             {
                 con.Open();
                 con.Execute(
-                    @"UPDATE Contato SET 
+                    @"UPDATE Telefone SET 
                     Numero = @Numero
                     WHERE Id = @Id;", telefoneDTO);
             }

@@ -33,5 +33,35 @@ namespace WebUI.Controllers
 
             return RedirectToAction("Details", "Contato", new { id = telefoneViewModel.ContatoId });
         }
+
+        public ActionResult Delete(int contatoId, int id)
+        {
+            _telefoneDAO.Excluir(id);
+
+            return RedirectToAction("Details", "Contato", new { id = contatoId });
+        }
+
+        public IActionResult Update(int id)
+        {
+            var telefoneDTO = _telefoneDAO.Consultar(id);
+
+            var telefoneViewModel = _mapper.Map<TelefoneViewModel>(telefoneDTO);
+
+            return View(telefoneViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Update(TelefoneViewModel telefoneViewModel)
+        {
+            if(!ModelState.IsValid) {
+                return View();
+            }
+
+            var telefoneDTO = _mapper.Map<TelefoneDTO>(telefoneViewModel);
+            
+            _telefoneDAO.Atualizar(telefoneDTO);
+
+            return RedirectToAction("Details", "Contato", new { id = telefoneViewModel.ContatoId });
+        }
     }
 }

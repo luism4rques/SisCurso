@@ -49,6 +49,8 @@
                 @Html.DisplayFor(modelItem => item.Numero)
             </td>
             <td>
+                <a asp-controller="Telefone" asp-action="Delete" asp-route-contatoId="@Model.Id" asp-route-id="@item.Id">Excluir</a>
+                <a asp-controller="Telefone" asp-action="Update" asp-route-id="@item.Id">Atualizar</a>
             </td>
         </tr>
     }
