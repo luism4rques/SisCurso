@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebUI.Models;
+using WebUI.StartupConfigure;
 
 namespace WebUI
 {
@@ -29,16 +30,9 @@ namespace WebUI
         {
             services.AddControllersWithViews();
             
-            var config = new AutoMapper.MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<ContatoViewModel, ContatoDTO>().ReverseMap();
-                cfg.CreateMap<TelefoneViewModel, TelefoneDTO>().ReverseMap();
-            });
-            IMapper mapper = config.CreateMapper();
-            
-            services.AddSingleton(mapper);
-            services.AddTransient<IContatoDAO, ContatoDAO>();
-            services.AddTransient<ITelefoneDAO, TelefoneDAO>();
+            services.AddAutoMapper();
+
+            services.AddDependencyInjection();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
