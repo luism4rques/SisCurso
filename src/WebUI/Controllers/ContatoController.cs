@@ -35,7 +35,15 @@ namespace WebUI.Controllers
 
             var contatoDTO = _mapper.Map<ContatoDTO>(contatoViewModel);
             
-            _contatoDAO.Criar(contatoDTO);
+            try
+            {
+                _contatoDAO.Criar(contatoDTO);
+                TempData[Constants.Message.SUCCESS] = "Contato incluído com sucesso.";
+            }
+            catch(Exception ex)
+            {
+                TempData[Constants.Message.ERROR] = ex.Message;
+            }
 
             return RedirectToAction("Index");
         }
