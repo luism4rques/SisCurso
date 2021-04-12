@@ -77,7 +77,15 @@ namespace WebUI.Controllers
 
         public IActionResult Delete(int id)
         {
-            _contatoDAO.Excluir(id);
+            try
+            {
+                _contatoDAO.Excluir(id);
+                TempData[Constants.Message.SUCCESS] = "Contato excluído com sucesso.";
+            }
+            catch(Exception ex)
+            {
+                TempData[Constants.Message.ERROR] = ex.Message;
+            }
 
             return RedirectToAction("Index");
         }
