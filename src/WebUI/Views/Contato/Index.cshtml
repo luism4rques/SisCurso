@@ -1,12 +1,14 @@
 @model IEnumerable<WebUI.Models.ContatoViewModel>
 
-@if(TempData["SuccessMessage"] != null){
+@if(TempData["SuccessMessage"] != null)
+{
    <div class="alert alert-success" role="alert">
       @TempData["SuccessMessage"].ToString()
    </div>
 }
 
-@if(TempData["ErrorMessage"] != null){
+@if(TempData["ErrorMessage"] != null)
+{
    <div class="alert alert-danger" role="alert">
       @TempData["ErrorMessage"].ToString()
    </div>
