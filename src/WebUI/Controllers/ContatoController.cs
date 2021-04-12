@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using AutoMapper;
 using DAO;
@@ -80,11 +81,11 @@ namespace WebUI.Controllers
             try
             {
                 _contatoDAO.Excluir(id);
-                TempData[Constants.Message.SUCCESS] = "Contato excluído com sucesso.";
+                TempData["SuccessMessage"] = "Contato excluído com sucesso.";
             }
             catch(Exception ex)
             {
-                TempData[Constants.Message.ERROR] = ex.Message;
+                TempData["ErrorMessage"] = ex.Message;
             }
 
             return RedirectToAction("Index");
