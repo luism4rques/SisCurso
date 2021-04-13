@@ -3,6 +3,7 @@ using AutoMapper;
 using DAO;
 using DTO;
 using WebUI.Models;
+using System;
 
 namespace WebUI.Controllers
 {
@@ -29,14 +30,30 @@ namespace WebUI.Controllers
         {
             var telefoneDTO = _mapper.Map<TelefoneDTO>(telefoneViewModel);
             
-            _telefoneDAO.Criar(telefoneDTO);
+            try
+            {
+                _telefoneDAO.Criar(telefoneDTO);
+                TempData[Constants.Message.SUCCESS] = "Telefone incluído com sucesso.";
+            }
+            catch(Exception ex)
+            {
+                TempData[Constants.Message.ERROR] = ex.Message;
+            }
 
             return RedirectToAction("Details", "Contato", new { id = telefoneViewModel.ContatoId });
         }
 
         public ActionResult Delete(int contatoId, int id)
         {
-            _telefoneDAO.Excluir(id);
+            try
+            {
+                _telefoneDAO.Excluir(id);
+                TempData[Constants.Message.SUCCESS] = "Telefone excluído com sucesso.";
+            }
+            catch(Exception ex)
+            {
+                TempData[Constants.Message.ERROR] = ex.Message;
+            }
 
             return RedirectToAction("Details", "Contato", new { id = contatoId });
         }
@@ -58,8 +75,16 @@ namespace WebUI.Controllers
             }
 
             var telefoneDTO = _mapper.Map<TelefoneDTO>(telefoneViewModel);
-            
-            _telefoneDAO.Atualizar(telefoneDTO);
+
+            try
+            {
+                _telefoneDAO.Atualizar(telefoneDTO);
+                TempData[Constants.Message.SUCCESS] = "Telefone atualizado com sucesso.";
+            }
+            catch(Exception ex)
+            {
+                TempData[Constants.Message.ERROR] = ex.Message;
+            }
 
             return RedirectToAction("Details", "Contato", new { id = telefoneViewModel.ContatoId });
         }

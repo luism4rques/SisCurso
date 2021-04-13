@@ -66,7 +66,15 @@ namespace WebUI.Controllers
 
             var contatoDTO = _mapper.Map<ContatoDTO>(contatoViewModel);
             
-            _contatoDAO.Atualizar(contatoDTO);
+            try
+            {
+                _contatoDAO.Atualizar(contatoDTO);
+                TempData[Constants.Message.SUCCESS] = "Contato atualizado com sucesso.";
+            }
+            catch(Exception ex)
+            {
+                TempData[Constants.Message.ERROR] = ex.Message;
+            }
 
             return RedirectToAction("Index");
         }
