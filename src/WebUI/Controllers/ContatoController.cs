@@ -39,12 +39,36 @@ namespace WebUI.Controllers
 
         public IActionResult Index()
         {
+            var contatoDAO = new ContatoDAO();
+            var lstContatoDTO = contatoDAO.Consultar();
+            var lstContato = new List<Contato>();
+
+            foreach(var dto in lstContatoDTO)
+            {
+                lstContato.Add(new Contato()
+                {
+                    Id = dto.Id,
+                    Nome = dto.Nome,
+                    SobreNome = dto.SobreNome,
+                    Email = dto.Email
+                });
+            }
+
             return View(lstContato);
         }
 
         public IActionResult Details(int id)
         {
-            var contato = lstContato.Find(contato => contato.Id == id);
+            var contatoDAO = new ContatoDAO();
+            var contatoDTO = contatoDAO.Consultar(id);
+
+            var contato = new Contato()
+            {
+                Id = contatoDTO.Id,
+                Nome = contatoDTO.Nome,
+                SobreNome = contatoDTO.SobreNome,
+                Email = contatoDTO.Email
+            };
 
             return View(contato);
         }
