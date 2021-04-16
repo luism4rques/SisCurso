@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
@@ -48,15 +49,29 @@ namespace DAO
             }
         }
 
-        public ContatoDTO Consultar(int id)
+        public List<ContatoDTO> Consultar()
         {
-            using (var con = Connection)
+            using(var con = Connection)
             {
                 con.Open();
-                ContatoDTO result = con.Query<ContatoDTO>(
+                var result = con.Query<ContatoDTO>(
+                    @"SELECT Id, Nome, SobreNome, Email
+                    FROM Contato"
+                ).ToList();
+                return result;
+            }
+        }
+
+        public ContatoDTO Consultar(int id)
+        {
+            using(var con = Connection)
+            {
+                con.Open();
+                var result = con.Query<ContatoDTO>(
                     @"SELECT Id, Nome, SobreNome, Email
                     FROM Contato
-                    WHERE Id = @id", new { id }).FirstOrDefault();
+                    WHERE Id = @id", new { id }
+                ).FirstOrDefault();
                 return result;
             }
         }
