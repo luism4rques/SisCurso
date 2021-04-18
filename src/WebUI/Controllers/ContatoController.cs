@@ -41,8 +41,7 @@ namespace WebUI.Controllers
 
         public IActionResult Update(int id)
         {
-            var contatoDAO = new ContatoDAO();
-            var contatoDTO = contatoDAO.Consultar(id);
+            var contatoDTO = _contatoDAO.Consultar(id);
 
             var contatoViewModel = new ContatoViewModel()
             { 
