@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using DTO;
 
-namespace DAL
+namespace DAO
 {
     public interface IContatoDAO
     {
