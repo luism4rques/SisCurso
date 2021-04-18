@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace WebUI.Models
 {
     public class ContatoViewModel
