@@ -55,8 +55,7 @@ namespace DAO
                 var result = con.Query<TelefoneDTO>(
                     @"SELECT Id, ContatoId, Numero
                     FROM Telefone
-                    WHERE ContatoId = @ContatoId;"
-                ).ToList();
+                    WHERE ContatoId = @ContatoId;", new { contatoId }).ToList();
                 return result;
             }
         }
