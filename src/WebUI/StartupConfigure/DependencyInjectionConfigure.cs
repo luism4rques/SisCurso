@@ -7,8 +7,8 @@ namespace WebUI.StartupConfigure
     {
         public static IServiceCollection AddDependencyInjection(this IServiceCollection services)
         {
-            services.AddTransient<IContatoDAO, ContatoDAO>();
-            services.AddTransient<ITelefoneDAO, TelefoneDAO>();
+            services.AddTransient<IContatoDAO, DAO.SQLServer.ContatoDAO>();
+            services.AddTransient<ITelefoneDAO, DAO.SQLServer.TelefoneDAO>();
 
             return services;
         }
