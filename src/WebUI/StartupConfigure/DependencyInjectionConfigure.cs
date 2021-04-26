@@ -11,13 +11,13 @@ namespace WebUI.StartupConfigure
         {
             if(env.IsDevelopment())
             {
-                services.AddTransient<IContatoDAO, DAO.SQLServer.ContatoDAO>();
-                services.AddTransient<ITelefoneDAO, DAO.SQLServer.TelefoneDAO>();
+                services.AddTransient<IContatoDAO, DAO.SQLite.ContatoDAO>();
+                services.AddTransient<ITelefoneDAO, DAO.SQLite.TelefoneDAO>();
             }
             else
             {
-                services.AddTransient<IContatoDAO, DAO.SQLite.ContatoDAO>();
-                services.AddTransient<ITelefoneDAO, DAO.SQLite.TelefoneDAO>();
+                services.AddTransient<IContatoDAO, DAO.SQLServer.ContatoDAO>();
+                services.AddTransient<ITelefoneDAO, DAO.SQLServer.TelefoneDAO>();
             }
             return services;
         }
