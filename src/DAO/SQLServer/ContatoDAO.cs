@@ -3,7 +3,7 @@ using System.Linq;
 using Dapper;
 using DTO;
 
-namespace DAO
+namespace DAO.SQLServer
 {
     public class ContatoDAO : BaseDAO, IContatoDAO
     {

@@ -3,7 +3,7 @@ using System.Data.SQLite;
 using System.IO;
 using Dapper;
 
-namespace DAO
+namespace DAO.SQLite
 {
     public class BaseDAO
     {
