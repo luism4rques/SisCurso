@@ -4,7 +4,7 @@ namespace DAO.SQLServer
 {
     public class BaseDAO
     {
-        protected string ConnectionString => @"Server=.\sqlexpress;Integrated Security=true;Initial Catalog=master;";
+        protected string ConnectionString => @"Server=.\sqlexpress;Integrated Security=true;Initial Catalog=curso_hml;";
         protected SqlConnection Connection => new SqlConnection(ConnectionString);
     }
 }
