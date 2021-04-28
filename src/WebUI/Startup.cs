@@ -1,17 +1,8 @@
-using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DAO;
-using DTO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WebUI.Models;
 using WebUI.StartupConfigure;
 
 namespace WebUI
@@ -34,7 +25,7 @@ namespace WebUI
             
             services.AddAutoMapper();
 
-            services.AddDependencyInjection(CurrentEnvironment);
+            services.AddDependencyInjection(CurrentEnvironment, Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

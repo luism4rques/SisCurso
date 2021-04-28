@@ -7,7 +7,7 @@ namespace DAO.SQLServer
 {
     public class ContatoDAO : BaseDAO, IContatoDAO
     {
-        public ContatoDAO() : base()
+        public ContatoDAO(string connectionString) : base(connectionString)
         {
 
         }
