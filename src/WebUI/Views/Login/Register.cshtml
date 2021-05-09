@@ -1,5 +1,7 @@
 @model WebUI.Models.RegisterViewModel
 
+<partial name="_AlertMessagePartial"/>
+
 <form asp-action="Register">
     <div class="form-group col-md-4">
         <label asp-for="Email" class="control-label">@Html.DisplayNameFor(model => model.Email)</label>

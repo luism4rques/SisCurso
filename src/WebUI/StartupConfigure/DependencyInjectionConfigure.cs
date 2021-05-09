@@ -15,6 +15,7 @@ namespace WebUI.StartupConfigure
             {
                 services.AddTransient<IContatoDAO, DAO.SQLite.ContatoDAO>();
                 services.AddTransient<ITelefoneDAO, DAO.SQLite.TelefoneDAO>();
+                services.AddTransient<IUsuarioDAO, DAO.SQLite.UsuarioDAO>();
             }
             else
             {

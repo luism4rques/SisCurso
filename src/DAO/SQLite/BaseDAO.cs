@@ -33,11 +33,18 @@ namespace DAO.SQLite
                         );
                       create table Telefone
                         (
-                            Id integer primary key autoincrement,
+                            Id        integer primary key autoincrement,
                             ContatoId integer,
-                            Numero varchar(100) not null,
+                            Numero    varchar(100) not null,
                             FOREIGN KEY (ContatoId) REFERENCES Contato(Id)
-                        );");
+                        );
+                      create table Usuario
+                        (
+                            Id    integer primary key autoincrement,
+                            Email varchar(100) not null,
+                            Senha varchar(100) not null
+                        );"
+                );
             }
         }
     }
