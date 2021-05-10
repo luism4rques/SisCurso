@@ -3,6 +3,7 @@ using DAO;
 using DTO;
 using Microsoft.AspNetCore.Mvc;
 using WebUI.Models;
+using Crypt = BCrypt.Net.BCrypt;
 
 namespace WebUI.Controllers
 {
@@ -36,7 +37,7 @@ namespace WebUI.Controllers
             try
             {
                 _usuarioDAO.Criar(new UsuarioDTO() { Email = registerViewModel.Email, 
-                    Senha = registerViewModel.Password });
+                    Senha = Crypt.HashPassword(registerViewModel.Password) });
                 TempData[Constants.Message.SUCCESS] = "Usuário criado com sucesso.";
             }
             catch(Exception ex)
