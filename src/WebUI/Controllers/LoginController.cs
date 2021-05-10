@@ -45,6 +45,30 @@ namespace WebUI.Controllers
                 TempData[Constants.Message.ERROR] = ex.Message;
             }
 
+            return RedirectToAction("Login");
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(LoginViewModel loginViewModel)
+        {
+            if(!ModelState.IsValid) {
+                return View();
+            }
+
+            var usuarioDTO = _usuarioDAO.Consultar(loginViewModel.Email);
+
+            if(usuarioDTO == null || !Crypt.Verify(loginViewModel.Password, usuarioDTO.Senha))
+            {
+                TempData[Constants.Message.ERROR] = "O e-mail ou senha inválidos.";
+                return View();
+            }
+
+            TempData[Constants.Message.SUCCESS] = "Usuário autenticado com sucesso.";
             return View();
         }
     }
