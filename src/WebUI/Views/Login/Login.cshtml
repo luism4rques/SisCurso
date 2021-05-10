@@ -3,6 +3,7 @@
 <partial name="_AlertMessagePartial"/>
 
 <form asp-action="Login">
+    <input asp-for="ReturnURL" hidden>
     <div class="form-group col-md-4">
         <label asp-for="Email" class="control-label">@Html.DisplayNameFor(model => model.Email)</label>
         <input asp-for="Email" class="form-control"/>

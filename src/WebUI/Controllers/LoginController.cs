@@ -1,6 +1,10 @@
 using System;
+using System.Security.Claims;
 using DAO;
 using DTO;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebUI.Models;
 using Crypt = BCrypt.Net.BCrypt;
@@ -48,9 +52,9 @@ namespace WebUI.Controllers
             return RedirectToAction("Login");
         }
 
-        public ActionResult Login()
+        public ActionResult Login(string returnUrl = null)
         {
-            return View();
+            return View(new LoginViewModel { ReturnURL = returnUrl });
         }
 
         [HttpPost]
@@ -68,8 +72,23 @@ namespace WebUI.Controllers
                 return View();
             }
 
-            TempData[Constants.Message.SUCCESS] = "Usuário autenticado com sucesso.";
-            return View();
+            Autenticar();
+
+            if (Url.IsLocalUrl(loginViewModel.ReturnURL))
+            {
+                return Redirect(loginViewModel.ReturnURL);
+            }
+            
+            return RedirectToAction("Index", "Home");
+        }
+
+        private async void Autenticar()
+        {
+            var claimsIdentity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+            var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+            var authProperties = new AuthenticationProperties { ExpiresUtc = DateTimeOffset.UtcNow.AddSeconds(10), IsPersistent = true };
+            
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal, authProperties);
         }
     }
 }

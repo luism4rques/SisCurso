@@ -17,5 +17,7 @@ namespace WebUI.Models
         [DataType(DataType.Password)]
         [Display(Name="Senha")]
         public string Password { get; set; }
+        
+        public string ReturnURL { get; set; }
     }
 }

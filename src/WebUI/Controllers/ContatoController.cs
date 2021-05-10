@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AutoMapper;
 using DAO;
 using DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebUI.Models;
 
@@ -79,6 +80,7 @@ namespace WebUI.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             var lstContatoDTO = _contatoDAO.Consultar();
