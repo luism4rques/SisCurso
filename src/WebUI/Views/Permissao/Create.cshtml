@@ -1,0 +1,119 @@
+@model WebUI.Models.PermissaoViewModel
+
+<form asp-action="Create">
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="UsuarioId">Usuário</label>
+            <select asp-for="UsuarioId" asp-items="@(new SelectList(Model.Usuario, "Id", "Titulo"))" class="form-control">
+                <option>Selecione...</option>
+            </select>
+        </div>
+    </div>
+    </br>
+    <div class="card">
+        <div class="card-header">
+            Contato
+        </div>
+        <div class="card-body">
+            <div class = "row">
+                <div class = "col-md-3">
+                    <div class="form-group">
+                        <label for="Contato_Consultar">Consultar</label>
+                        <select asp-for="Contato_Consultar" class="form-control">
+                            <option value="n">Não</option>
+                            <option value="s">Sim</option>
+                        </select>
+                    </div>    
+                </div>
+                <div class = "col-md-3">
+                    <div class="form-group">
+                        <label for="Contato_Criar">Criar</label>
+                        <select asp-for="Contato_Criar" class="form-control">
+                            <option value="n">Não</option>
+                            <option value="s">Sim</option>
+                        </select>
+                    </div>    
+                </div>
+                <div class = "col-md-3">
+                    <div class="form-group">
+                        <label for="Contato_Atualizar">Atualizar</label>
+                        <select asp-for="Contato_Atualizar" class="form-control">
+                            <option value="n">Não</option>
+                            <option value="s">Sim</option>
+                        </select>
+                    </div>
+                </div>
+                <div class = "col-md-3">
+                    <div class="form-group">
+                        <label for="Contato_Excluir">Excluir</label>
+                        <select asp-for="Contato_Excluir" class="form-control">
+                            <option value="n">Não</option>
+                            <option value="s">Sim</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </br>
+    <div class="card">
+        <div class="card-header">
+            Telefone
+        </div>
+        <div class="card-body">
+            <div class = "row">
+                <div class = "col-md-3">
+                    <div class="form-group">
+                        <label for="Telefone_Consultar">Consultar</label>
+                        <select asp-for="Telefone_Consultar" class="form-control">
+                            <option value="n">Não</option>
+                            <option value="s">Sim</option>
+                        </select>
+                    </div>    
+                </div>
+                <div class = "col-md-3">
+                    <div class="form-group">
+                        <label for="Telefone_Criar">Criar</label>
+                        <select asp-for="Telefone_Criar" class="form-control">
+                            <option value="n">Não</option>
+                            <option value="s">Sim</option>
+                        </select>
+                    </div>
+                </div>
+                <div class = "col-md-3">
+                    <div class="form-group">
+                        <label for="Telefone_Atualizar">Atualizar</label>
+                        <select asp-for="Telefone_Atualizar" class="form-control">
+                            <option value="n">Não</option>
+                            <option value="s">Sim</option>
+                        </select>
+                    </div>
+                </div>
+                <div class = "col-md-3">
+                    <div class="form-group">
+                        <label for="Telefone_Excluir">Atualizar</label>
+                        <select asp-for="Telefone_Excluir" class="form-control">
+                            <option value="n">Não</option>
+                            <option value="s">Sim</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </br>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary"/>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
