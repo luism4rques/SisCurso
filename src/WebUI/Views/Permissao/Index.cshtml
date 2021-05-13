@@ -1,0 +1,27 @@
+@model IEnumerable<WebUI.Models.UsuarioViewModel>
+
+<partial name="_AlertMessagePartial"/>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a asp-controller="Permissao" asp-action="Update" asp-route-usuarioId="@item.Id">Permissões</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

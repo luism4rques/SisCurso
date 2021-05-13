@@ -13,6 +13,7 @@ namespace WebUI.StartupConfigure
             {
                 cfg.CreateMap<ContatoViewModel, ContatoDTO>().ReverseMap();
                 cfg.CreateMap<TelefoneViewModel, TelefoneDTO>().ReverseMap();
+                cfg.CreateMap<UsuarioViewModel, UsuarioDTO>().ReverseMap();
             });
             IMapper mapper = config.CreateMapper();
             
