@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Dapper;
 using DTO;
@@ -32,6 +33,19 @@ namespace DAO.SQLite
                     @"SELECT Id, Email, Senha
                     FROM Usuario
                     WHERE Email = @Email", new { email }).FirstOrDefault();
+                return result;
+            }
+        }
+
+        public List<UsuarioDTO> Consultar()
+        {
+            using (var con = Connection)
+            {
+                con.Open();
+                var result = con.Query<UsuarioDTO>(
+                    @"SELECT Id, Email, Senha
+                    FROM Usuario
+                    WHERE Id <> 1").ToList();
                 return result;
             }
         }
